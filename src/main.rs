@@ -127,7 +127,11 @@ fn ensure_sqlite_file(db_url: &str) -> std::io::Result<()> {
         }
 
         if !path.exists() {
-            fs::OpenOptions::new().create(true).write(true).open(path)?;
+            fs::OpenOptions::new()
+                .create(true)
+                .truncate(true)
+                .write(true)
+                .open(path)?;
         }
     }
 
